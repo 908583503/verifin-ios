@@ -24,7 +24,7 @@ final class ShareViewController: UIViewController {
             extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
             return
         }
-        let items = extensionContext?.extensionItems ?? []
+        let items = (extensionContext?.inputItems as? [NSExtensionItem]) ?? []
         let group = DispatchGroup()
         var savedAny = false
 
