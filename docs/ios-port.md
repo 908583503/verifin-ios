@@ -7,7 +7,7 @@
 | 项 | 要求 |
 |---|---|
 | Flutter | 3.50.0 stable（Dart 3.14，满足 pubspec `sdk: ^3.12.2`） |
-| Xcode | 15.3+（建议 16.x），iOS 15.0 部署目标 |
+| Xcode | 15.3+（建议 16.x），iOS 15.5 部署目标（ML Kit 要求 ≥15.5） |
 | Apple 账号 | 侧载：免费 Apple ID 即可；TestFlight/App Store：开发者账号（$99/年） |
 
 ## 快速开始
