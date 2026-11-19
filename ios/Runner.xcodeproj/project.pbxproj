@@ -146,6 +146,8 @@
 				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
+				7A0000020000000000000004 /* VeriFinWidgets.swift */,
+				7A0000020000000000000005 /* ShareViewController.swift */,
 				7A0000020000000000000006 /* Info.plist */,
 				7A0000020000000000000007 /* Info.plist */,
 				7A000002000000000000000A /* VeriFinWidgets.entitlements */,
@@ -312,6 +314,8 @@
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
+				7A0000030000000000000001 /* VeriFinWidgets */,
+				7A0000030000000000000002 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
