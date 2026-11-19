@@ -14,8 +14,8 @@
 		7A0000010000000000000012 /* VeriFinWidgetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000002 /* VeriFinWidgetStore.swift */; };
 		7A0000010000000000000013 /* VeriFinWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000003 /* VeriFinWidgetViews.swift */; };
 		7A0000010000000000000021 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000005 /* ShareViewController.swift */; };
-		7A0000020000000000000008 /* VeriFinWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000008 /* VeriFinWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7A0000020000000000000009 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000009 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7A000002000000000000000E /* VeriFinWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000008 /* VeriFinWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7A000002000000000000000F /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A0000020000000000000009 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -67,8 +67,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				7A0000020000000000000008 /* VeriFinWidgets.appex in Embed App Extensions */,
-				7A0000020000000000000009 /* ShareExtension.appex in Embed App Extensions */,
+				7A000002000000000000000E /* VeriFinWidgets.appex in Embed App Extensions */,
+				7A000002000000000000000F /* ShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
