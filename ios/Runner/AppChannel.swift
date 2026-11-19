@@ -12,6 +12,7 @@
 //   - widgetInstanceCounts：WidgetKit 查询不到实例数，恒返回空。
 
 import Flutter
+import SwiftUI
 import UIKit
 import CryptoKit
 import UniformTypeIdentifiers
@@ -294,7 +295,7 @@ final class AppChannelHandler {
             var stale = false
             guard let url = try? URL(resolvingBookmarkData: data, bookmarkDataIsStale: &stale) else {
                 DispatchQueue.main.async {
-                    fail(result, failureCode, "备份目录不可用，请重新选择。")
+                    self.fail(result, failureCode, "备份目录不可用，请重新选择。")
                 }
                 return
             }
@@ -305,7 +306,7 @@ final class AppChannelHandler {
                 DispatchQueue.main.async { result(value) }
             } catch {
                 DispatchQueue.main.async {
-                    fail(result, failureCode, error.localizedDescription)
+                    self.fail(result, failureCode, error.localizedDescription)
                 }
             }
         }
@@ -403,7 +404,7 @@ final class AppChannelHandler {
         let payload = String(fileUri.dropFirst("\(bookmarkScheme)://".count))
         guard
             let separator = payload.range(of: "@file/"),
-            !separator.upperBound.isEmpty
+            separator.lowerBound > payload.startIndex
         else { result(false); return }
         let dirToken = String(payload[payload.startIndex..<separator.lowerBound])
         let name = String(payload[separator.upperBound...])
@@ -504,10 +505,18 @@ final class AppChannelHandler {
         let view = VeriFinWidgetContentView(template: template, display: display)
             .frame(width: width, height: height)
         DispatchQueue.main.async {
-            let renderer = ImageRenderer(content: view)
-            renderer.scale = UIScreen.main.scale
-            let data = renderer.uiImage?.pngData()
-            result(data.map { FlutterStandardTypedData(bytes: $0) })
+            if #available(iOS 16.0, *) {
+                let renderer = ImageRenderer(content: view)
+                renderer.scale = UIScreen.main.scale
+                if let data = renderer.uiImage?.pngData() {
+                    result(FlutterStandardTypedData(bytes: data))
+                } else {
+                    result(nil)
+                }
+            } else {
+                // iOS 15.x 无 ImageRenderer，按约定返回 null（Dart 侧显示「预览暂不可用」）。
+                result(nil)
+            }
         }
     }
 }
