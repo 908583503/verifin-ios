@@ -1,0 +1,82 @@
+# iOS 打包工作流（macOS Runner）
+#
+# 目标：让没有 Mac 的人也能拿到可自签的 IPA。
+#
+# 产出两个构建物：
+#   verifin-lite-ipa —— 已删除小组件与分享扩展的 IPA。
+#                       任何证书都能签（企业证书、共享证书、免费个人证书）。
+#                       记账/预算/报表/备份/CSV/AI/OCR/应用锁全部可用，
+#                       仅桌面小组件与系统分享入口不可用。
+#   verifin-full-ipa —— 保留两个 .appex 的 IPA。
+#                       要求描述文件含 App Groups（group.top.talyra42.verifin），
+#                       且签名工具必须支持「连同扩展一起签名」。
+#
+# 用法：Actions -> iOS Build -> Run workflow，跑完在该次运行的 Artifacts 里下载。
+# 也可在本地 Mac 上直接跑 build/ios/iphoneos/Runner.app + scripts/prepare_sideload_ipa.py。
+
+name: iOS Build
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-ios:
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter 3.50.0
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.50.0"
+          channel: stable
+          cache: true
+
+      - name: Read app version from pubspec
+        id: ver
+        run: |
+          RAW=$(grep -E '^version:' pubspec.yaml | head -1 | sed 's/version:[[:space:]]*//' | tr -d '\r')
+          NAME=${RAW%%+*}
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "build=${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "构建版本: $NAME (${{ github.run_number }})"
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Build iOS (unsigned)
+        run: |
+          flutter build ios --release --no-codesign \
+            --build-name="${{ steps.ver.outputs.name }}" \
+            --build-number="${{ steps.ver.outputs.build }}"
+
+      - name: Package sideload IPAs
+        run: |
+          python3 scripts/prepare_sideload_ipa.py \
+            --app build/ios/iphoneos/Runner.app --mode full
+          python3 scripts/prepare_sideload_ipa.py \
+            --app build/ios/iphoneos/Runner.app --mode lite
+          ls -lh build/ios/ipa/
+
+      - name: Upload lite IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: verifin-lite-ipa
+          path: build/ios/ipa/verifin-lite.ipa
+          if-no-files-found: error
+
+      - name: Upload full IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: verifin-full-ipa
+          path: build/ios/ipa/verifin-full.ipa
+          if-no-files-found: error

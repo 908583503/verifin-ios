@@ -1,0 +1,349 @@
+import 'package:anchored_menu/anchored_menu.dart';
+import 'package:flutter/material.dart';
+
+import 'models.dart';
+
+// 画布与内容基色：一律实体填色，不模拟玻璃折射或模糊。
+const Color veriCanvasLight = Color(0xFFF3F5F8);
+const Color veriCanvasDark = Color(0xFF101318);
+
+/// 内容卡片（与资产封面）的深色基色。
+const Color veriCardSurfaceDark = Color(0xFF1A1F27);
+
+/// 卡片圆角半径。卡内需要自行裁圆角（例如样式预览这类整宽内容）时用它。
+const double veriCardRadius = 16;
+
+/// 内容卡片与资产封面共用的实体基色。
+Color veriContentSurfaceColor(Brightness brightness) =>
+    brightness == Brightness.dark ? veriCardSurfaceDark : veriSurfaceLight;
+
+/// 浮动元件（底部导航、快捷按钮、锚点菜单）的实体基色。
+///
+/// 比画布和内容卡片更亮一档，靠表面色差 + 描边 + 阴影表达层级，
+/// 不需要模糊或渐变。
+Color veriElevatedSurfaceColor(Brightness brightness) =>
+    brightness == Brightness.dark ? veriSurfaceRaisedDark : veriSurfaceLight;
+
+/// 深色下高于卡片的浮动表面色。
+const Color veriSurfaceRaisedDark = Color(0xFF232A35);
+
+const Color veriMint = Color(0xFF34DBCB);
+const Color veriCyan = Color(0xFF34C2DB);
+const Color veriBlue = Color(0xFF3498DB);
+const Color veriRoyal = Color(0xFF346EDB);
+const Color veriNavigationUnselected = Color(0xFFADADAD);
+const Color veriIndigo = Color(0xFF3445DB);
+const Color veriInk = Color(0xFF151922);
+const Color veriLine = Color(0xFFE1E8F1);
+const Color veriExpense = Color(0xFFE84D6A);
+const Color veriIncome = Color(0xFF12B8A6);
+const Color veriWarning = Color(0xFFFFB33E);
+// 构成图（分类 / 账户占比）的分类色。前 5 色沿用资产汇总原配色，后 4 色用于
+// 展开更多分类；它们只表达「彼此不同的类别」，不承载收入 / 支出等语义。
+const Color veriChartOrange = Color(0xFFE8894A);
+const Color veriChartPink = Color(0xFFE36A9A);
+const Color veriChartViolet = Color(0xFF9B7BE8);
+const Color veriChartSlate = Color(0xFF8C99A8);
+// 浅色底语义色变体。上面的亮色在白底上对比度不足（veriIncome 2.49:1、veriWarning 1.78:1、
+// veriBlue 3.15:1、veriExpense 3.68:1，均低于正文级 AA 要求的 4.5:1）。以下变体保持原色相、
+// 只压暗明度，在 #FFFFFF 与 #F3F5F8 上均 ≥ 4.5:1。深色主题继续用亮色。
+const Color veriExpenseOnLight = Color(0xFFC2334F);
+const Color veriIncomeOnLight = Color(0xFF0B7A6C);
+const Color veriBlueOnLight = Color(0xFF1F6FC4);
+const Color veriWarningOnLight = Color(0xFF8A5A00);
+
+/// 语义色在当前明暗下的实际取值：深色底用原亮色，浅色底用加深变体。
+/// 只对四个语义色生效，其它颜色原样返回。
+Color veriSemantic(BuildContext context, Color semanticColor) =>
+    veriSemanticFor(Theme.of(context).brightness, semanticColor);
+
+/// [veriSemantic] 的无 `BuildContext` 版本，供纯取色函数使用。
+Color veriSemanticFor(Brightness brightness, Color semanticColor) {
+  if (brightness == Brightness.dark) {
+    return semanticColor;
+  }
+  return switch (semanticColor) {
+    veriExpense => veriExpenseOnLight,
+    veriIncome => veriIncomeOnLight,
+    veriBlue => veriBlueOnLight,
+    veriWarning => veriWarningOnLight,
+    _ => semanticColor,
+  };
+}
+
+const List<Color> _veriChartPaletteTail = <Color>[
+  veriBlue,
+  veriCyan,
+  veriMint,
+  veriWarning,
+  veriChartOrange,
+  veriChartPink,
+  veriChartViolet,
+  veriIndigo,
+  veriChartSlate,
+];
+
+/// 把分类色统一压到深色档（相对亮度约 0.22）。
+///
+/// 分类盘里的青、薄荷、黄等原色亮度差异很大；只按 HSL 明度压暗仍会让黄绿比
+/// 蓝紫亮一大截，导致环内文字一会儿黑一会儿白。这里按实际相对亮度做二分，
+/// 让 10 个颜色落在同一档，统一使用白字，浅色 / 深色主题下都不再翻转。
+Color _veriChartTone(Color color) {
+  final hsl = HSLColor.fromColor(color);
+  var low = 0.0;
+  var high = 1.0;
+  for (var i = 0; i < 24; i++) {
+    final mid = (low + high) / 2;
+    final luminance = hsl.withLightness(mid).toColor().computeLuminance();
+    if (luminance < 0.22) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return hsl.withLightness((low + high) / 2).toColor();
+}
+
+/// 构成图（分类 / 账户占比）的 10 色分类调色盘。
+///
+/// 首色取用户主题主色的同色相并压到统一深色档，其余固定；前 5 色保留资产汇总
+/// 原有的视觉顺序，后 5 色只在展开更多类别时出现。「其他」不占用分类色，始终
+/// 由调用方使用中性色。
+List<Color> veriChartPaletteFor(Color primary) => <Color>[
+  _veriChartTone(primary),
+  for (final color in _veriChartPaletteTail) _veriChartTone(color),
+];
+
+/// [veriChartPaletteFor] 的主题入口；分类图与资产汇总共用同一套顺序。
+List<Color> veriChartPalette(BuildContext context) =>
+    veriChartPaletteFor(Theme.of(context).colorScheme.primary);
+
+const Color veriSurfaceLight = Color(0xFFFFFFFF);
+const Color veriSurfaceDark = Color(0xFF0E1117);
+const Color veriSurfaceAltLight = Color(0xFFF5F8FC);
+const Color veriSurfaceAltDark = Color(0xFF151A22);
+const double veriRadiusSm = 6;
+const double veriRadiusMd = 12;
+const double veriRadiusLg = 16;
+const double veriRadiusXl = 24;
+const double veriHeaderHeight = 56;
+const double veriPageMaxWidth = 440;
+
+Color _onCustomPrimary(Color color) =>
+    ThemeData.estimateBrightnessForColor(color) == Brightness.light
+    ? Colors.black
+    : Colors.white;
+
+ThemeData buildVeriFinTheme(
+  Brightness brightness, {
+  ThemeColorPreference colorPreference = ThemeColorPreference.defaultValue,
+}) {
+  final isDark = brightness == Brightness.dark;
+  final useSystemColors = colorPreference.mode == ThemeColorMode.system;
+  final useExactPrimary = !useSystemColors;
+  final seedColor = useSystemColors
+      ? veriRoyal
+      : colorPreference.mode == ThemeColorMode.custom
+      ? Color(colorPreference.customColorValue)
+      : veriRoyal;
+  final seedScheme = ColorScheme.fromSeed(
+    seedColor: seedColor,
+    brightness: brightness,
+    // Default and custom modes keep the chosen primary exact. Material still
+    // generates supporting container/secondary roles from the same hue, while
+    // onPrimary is chosen for readable foreground text.
+    primary: useExactPrimary ? seedColor : null,
+    onPrimary: useExactPrimary ? _onCustomPrimary(seedColor) : null,
+  );
+  final canvas = isDark ? veriCanvasDark : veriCanvasLight;
+  final colorScheme = seedScheme.copyWith(
+    surface: canvas,
+    surfaceContainerHighest: seedScheme.surfaceContainerHighest,
+    onSurface: isDark ? const Color(0xFFF0F3F8) : veriInk,
+  );
+
+  final baseTheme = ThemeData(
+    useMaterial3: true,
+    pageTransitionsTheme: const PageTransitionsTheme(),
+    brightness: brightness,
+    colorScheme: colorScheme,
+    useSystemColors: useSystemColors,
+    scaffoldBackgroundColor: canvas,
+    fontFamily: 'Roboto',
+    visualDensity: VisualDensity.compact,
+    dividerTheme: DividerThemeData(
+      color: isDark ? Colors.white10 : veriLine,
+      thickness: 0.8,
+      space: 1,
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        minimumSize: const Size(40, 40),
+        tapTargetSize: MaterialTapTargetSize.padded,
+      ),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: seedScheme.primary,
+        foregroundColor: seedScheme.onPrimary,
+        minimumSize: const Size(44, 44),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(veriRadiusMd),
+        ),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        // 对话框的「取消 / 不保存 / 删除」都走这个主题：必须保留至少 48×44 的
+        // 可点区域，否则单手操作容易误触。
+        minimumSize: const Size(48, 44),
+        tapTargetSize: MaterialTapTargetSize.padded,
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: seedScheme.primary,
+      foregroundColor: seedScheme.onPrimary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(veriRadiusLg)),
+      ),
+    ),
+    chipTheme: ChipThemeData(
+      backgroundColor: isDark ? veriSurfaceAltDark : veriSurfaceLight,
+      selectedColor: seedScheme.primary.withValues(alpha: 0.14),
+      secondarySelectedColor: seedScheme.primary.withValues(alpha: 0.14),
+      labelStyle: TextStyle(
+        color: isDark ? Colors.white.withValues(alpha: 0.86) : veriInk,
+        fontSize: 12,
+      ),
+      secondaryLabelStyle: TextStyle(
+        color: isDark ? Colors.white.withValues(alpha: 0.88) : veriInk,
+        fontSize: 12,
+      ),
+      side: BorderSide(color: isDark ? Colors.white10 : veriLine),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(veriRadiusSm),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: isDark ? veriCardSurfaceDark : veriSurfaceLight,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(veriRadiusMd),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(veriRadiusMd),
+        borderSide: BorderSide(color: seedScheme.primary, width: 1.4),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(veriRadiusMd),
+        borderSide: BorderSide(
+          color: isDark ? veriExpense : veriExpenseOnLight,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(veriRadiusMd),
+        borderSide: BorderSide(
+          color: isDark ? veriExpense : veriExpenseOnLight,
+          width: 1.4,
+        ),
+      ),
+      isDense: true,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(veriRadiusMd),
+        borderSide: BorderSide.none,
+      ),
+    ),
+  );
+
+  return baseTheme.copyWith(
+    extensions: <ThemeExtension<dynamic>>[
+      AnchoredMenuThemeData(
+        surfaceColor: veriElevatedSurfaceColor(brightness),
+        borderColor: isDark ? Colors.white.withValues(alpha: 0.12) : veriLine,
+        foregroundColor: colorScheme.onSurface,
+        selectedColor: colorScheme.primary,
+        panelBorderRadius: BorderRadius.circular(veriRadiusXl),
+        itemBorderRadius: BorderRadius.circular(veriRadiusLg),
+        minWidth: 168,
+      ),
+    ],
+    textTheme: baseTheme.textTheme.copyWith(
+      displayLarge: baseTheme.textTheme.displayLarge?.copyWith(
+        fontSize: 38,
+        height: 1.05,
+        letterSpacing: 0,
+      ),
+      displayMedium: baseTheme.textTheme.displayMedium?.copyWith(
+        fontSize: 32,
+        height: 1.08,
+        letterSpacing: 0,
+      ),
+      displaySmall: baseTheme.textTheme.displaySmall?.copyWith(
+        fontSize: 26,
+        height: 1.12,
+        letterSpacing: 0,
+      ),
+      headlineMedium: baseTheme.textTheme.headlineMedium?.copyWith(
+        fontSize: 21,
+        height: 1.18,
+        letterSpacing: 0,
+      ),
+      headlineSmall: baseTheme.textTheme.headlineSmall?.copyWith(
+        fontSize: 19,
+        height: 1.2,
+        letterSpacing: 0,
+      ),
+      titleLarge: baseTheme.textTheme.titleLarge?.copyWith(
+        fontSize: 17,
+        height: 1.25,
+        letterSpacing: 0,
+      ),
+      titleMedium: baseTheme.textTheme.titleMedium?.copyWith(
+        fontSize: 14,
+        height: 1.25,
+        letterSpacing: 0,
+      ),
+      titleSmall: baseTheme.textTheme.titleSmall?.copyWith(
+        fontSize: 13,
+        height: 1.25,
+        letterSpacing: 0,
+      ),
+      bodyLarge: baseTheme.textTheme.bodyLarge?.copyWith(
+        fontSize: 14,
+        height: 1.35,
+        letterSpacing: 0,
+      ),
+      bodyMedium: baseTheme.textTheme.bodyMedium?.copyWith(
+        fontSize: 13,
+        height: 1.35,
+        letterSpacing: 0,
+      ),
+      bodySmall: baseTheme.textTheme.bodySmall?.copyWith(
+        fontSize: 12,
+        height: 1.35,
+        letterSpacing: 0,
+      ),
+      labelLarge: baseTheme.textTheme.labelLarge?.copyWith(
+        fontSize: 12,
+        height: 1.25,
+        letterSpacing: 0,
+      ),
+      labelMedium: baseTheme.textTheme.labelMedium?.copyWith(
+        fontSize: 11,
+        height: 1.25,
+        letterSpacing: 0,
+      ),
+      labelSmall: baseTheme.textTheme.labelSmall?.copyWith(
+        fontSize: 10,
+        height: 1.2,
+        letterSpacing: 0,
+      ),
+    ),
+  );
+}
