@@ -104,6 +104,18 @@ abstract class AppLocalizations {
   /// **'Veri Fin'**
   String get appTitle;
 
+  /// No description provided for @welcomeSubtitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'个人记账 · 数据都在本机'**
+  String get welcomeSubtitle;
+
+  /// No description provided for @welcomeLoadingText.
+  ///
+  /// In zh, this message translates to:
+  /// **'正在打开账本'**
+  String get welcomeLoadingText;
+
   /// No description provided for @statRangeLabel.
   ///
   /// In zh, this message translates to:

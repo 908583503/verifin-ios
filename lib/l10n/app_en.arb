@@ -1,6 +1,8 @@
 {
   "@@locale": "en",
   "appTitle": "Veri Fin",
+  "welcomeSubtitle": "Personal bookkeeping · data stays local",
+  "welcomeLoadingText": "Opening your ledger",
   "statRangeLabel": "Range",
   "backupInvalidFile": "The backup file is invalid or corrupted.",
   "fileEmptyError": "The file is empty.",
@@ -220,8 +222,6 @@
   "panelYearSummaryLabel": "This year",
   "panelYearSummaryPeriodLabel": "Income & spending",
   "panelYearSummaryDesc": "Income, spending and balance for this year",
-  "metricYearIncome": "This year income",
-  "metricYearExpense": "This year spending",
   "metricYearNet": "This year balance",
   "panelYearTrendLabel": "Income & spending",
   "panelYearTrendDesc": "Income against spending for each month this year",
@@ -473,19 +473,25 @@
   "entryTagCount": "Tags {count}",
   "@entryTagCount": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "entryAttachmentCount": "Attachments {count}",
   "@entryAttachmentCount": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "entryCategoryBranchTitle": "Choose a {category} category",
   "@entryCategoryBranchTitle": {
     "placeholders": {
-      "category": {"type": "String"}
+      "category": {
+        "type": "String"
+      }
     }
   },
   "commonCategory": "Category",
@@ -814,11 +820,19 @@
   "noDimDesc": "No {dim} records in this time range.",
   "chartTrendSemantics": "Line chart with {count} data points; tap or swipe to read each value.",
   "@chartTrendSemantics": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "chartBarSemantics": "Bar chart with {count} items; tap or swipe to read each value.",
   "@chartBarSemantics": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "reportsSubtitle": "Budget & stats",
   "thisYearLabel": "This year",
@@ -1031,7 +1045,11 @@
   "runningBalancePrefix": "Balance {amount}",
   "moneyUnitLabel": "Unit: {unit}",
   "@moneyUnitLabel": {
-    "placeholders": {"unit": {"type": "String"}}
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
   },
   "autoSuggestLabel": "Auto-fill from history",
   "@autoSuggestLabel": {
@@ -1362,11 +1380,19 @@
   "importPreviewTitle": "Import preview",
   "importPreviewTargetBook": "Import into \"{book}\"",
   "@importPreviewTargetBook": {
-    "placeholders": {"book": {"type": "String"}}
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
   },
   "ledgerBookSwitched": "Switched to \"{book}\"",
   "@ledgerBookSwitched": {
-    "placeholders": {"book": {"type": "String"}}
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
   },
   "importPreviewHint": "Tap to exclude / restore, long-press to edit",
   "importPreviewSelectedOf": "Importing {selected} / {total}",
@@ -1498,8 +1524,12 @@
   "updateAvailableMessage": "Current version: v{current}\nLatest version: v{latest}",
   "@updateAvailableMessage": {
     "placeholders": {
-      "current": {"type": "String"},
-      "latest": {"type": "String"}
+      "current": {
+        "type": "String"
+      },
+      "latest": {
+        "type": "String"
+      }
     }
   },
   "updateUpToDate": "You're on the latest version",
@@ -1723,8 +1753,12 @@
   "currencyPickerMeta": "Symbol {symbol} · {digits} decimal places",
   "@currencyPickerMeta": {
     "placeholders": {
-      "symbol": {"type": "String"},
-      "digits": {"type": "int"}
+      "symbol": {
+        "type": "String"
+      },
+      "digits": {
+        "type": "int"
+      }
     }
   },
   "ledgerBaseCurrency": "Ledger base currency",
@@ -1738,8 +1772,12 @@
   "ledgerCurrencyChangeMessage": "This empty ledger will use {code} ({name}); its zero-balance accounts will change to the same currency.",
   "@ledgerCurrencyChangeMessage": {
     "placeholders": {
-      "code": {"type": "String"},
-      "name": {"type": "String"}
+      "code": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
     }
   },
   "legacyCurrencySetupTitle": "Confirm the currency of existing amounts",
@@ -1747,31 +1785,57 @@
   "legacyCurrencyStart": "Confirm currency",
   "legacyCurrencyConfirmCurrent": "Existing amounts are {code}",
   "@legacyCurrencyConfirmCurrent": {
-    "placeholders": {"code": {"type": "String"}}
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
   "legacyCurrencyChooseAnother": "Existing amounts are another currency",
   "legacyCurrencyConfirmTitle": "Interpret existing amounts as {code}?",
   "@legacyCurrencyConfirmTitle": {
-    "placeholders": {"code": {"type": "String"}}
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
   "legacyCurrencyConfirmMessage": "This updates {accounts} accounts, {entries} transactions, {rules} recurring rules, and {budgets} budget settings. Every number stays unchanged; only its currency is interpreted as {code}. This cannot be reinterpreted again.",
   "@legacyCurrencyConfirmMessage": {
     "placeholders": {
-      "accounts": {"type": "int"},
-      "entries": {"type": "int"},
-      "rules": {"type": "int"},
-      "budgets": {"type": "int"},
-      "code": {"type": "String"}
+      "accounts": {
+        "type": "int"
+      },
+      "entries": {
+        "type": "int"
+      },
+      "rules": {
+        "type": "int"
+      },
+      "budgets": {
+        "type": "int"
+      },
+      "code": {
+        "type": "String"
+      }
     }
   },
   "legacyCurrencyApply": "Confirm and apply",
   "legacyCurrencySaved": "Existing amounts are now interpreted as {code}",
   "@legacyCurrencySaved": {
-    "placeholders": {"code": {"type": "String"}}
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
   "accountBalanceCurrencyLabel": "Opening balance ({code})",
   "@accountBalanceCurrencyLabel": {
-    "placeholders": {"code": {"type": "String"}}
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
   "accountCurrencyLocked": "The account currency is locked because it has a balance, credit limit, or transaction history.",
   "entryCurrencyLockedByRefund": "The original currency is locked because this transaction has refunds. Resolve the linked refunds first.",
@@ -1786,28 +1850,48 @@
   "entryConversionRateTrace": "Using local rates effective {date}{status}",
   "@entryConversionRateTrace": {
     "placeholders": {
-      "date": {"type": "String"},
-      "status": {"type": "String"}
+      "date": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
     }
   },
   "assetValuationRateTrace": "Oldest asset valuation rate: {date}{status}",
   "@assetValuationRateTrace": {
     "placeholders": {
-      "date": {"type": "String"},
-      "status": {"type": "String"}
+      "date": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
     }
   },
   "homeRecurringRatePending": "{count} recurring entries are waiting for rates",
   "@homeRecurringRatePending": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "homeRecurringRatePendingDesc": "Missing {codes}. Tap to resolve.",
   "@homeRecurringRatePendingDesc": {
-    "placeholders": {"codes": {"type": "String"}}
+    "placeholders": {
+      "codes": {
+        "type": "String"
+      }
+    }
   },
   "balanceAdjustMissingRate": "No valid {code}-to-base exchange rate is available, so the balance adjustment transaction cannot be created.",
   "@balanceAdjustMissingRate": {
-    "placeholders": {"code": {"type": "String"}}
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
   "currencyRatesTitle": "Currencies & rates",
   "currencyRatesHelpTitle": "About exchange rates",
@@ -1819,9 +1903,15 @@
   "exchangeRateEquation": "1 {currency} = {rate} {base}",
   "@exchangeRateEquation": {
     "placeholders": {
-      "currency": {"type": "String"},
-      "rate": {"type": "String"},
-      "base": {"type": "String"}
+      "currency": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      },
+      "base": {
+        "type": "String"
+      }
     }
   },
   "exchangeRateNotSet": "No rate set",
@@ -1829,8 +1919,12 @@
   "exchangeRateDateAndStatus": "{date} · {status}",
   "@exchangeRateDateAndStatus": {
     "placeholders": {
-      "date": {"type": "String"},
-      "status": {"type": "String"}
+      "date": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
     }
   },
   "exchangeRateStale": "May be outdated",
@@ -1847,11 +1941,19 @@
   "exchangeRateSourceImported": "Imported",
   "exchangeRateHistory": "{currency} rate history",
   "@exchangeRateHistory": {
-    "placeholders": {"currency": {"type": "String"}}
+    "placeholders": {
+      "currency": {
+        "type": "String"
+      }
+    }
   },
   "exchangeRateAgainst": "Against {base}",
   "@exchangeRateAgainst": {
-    "placeholders": {"base": {"type": "String"}}
+    "placeholders": {
+      "base": {
+        "type": "String"
+      }
+    }
   },
   "exchangeRateHistoryEmpty": "No rate history yet",
   "exchangeRateHistoryEmptyDesc": "Use the add button to create the first effective rate.",
@@ -1861,8 +1963,12 @@
   "exchangeRateInputTitle": "How many {base} equal 1 {currency}?",
   "@exchangeRateInputTitle": {
     "placeholders": {
-      "currency": {"type": "String"},
-      "base": {"type": "String"}
+      "currency": {
+        "type": "String"
+      },
+      "base": {
+        "type": "String"
+      }
     }
   },
   "exchangeRateSaved": "Exchange rate saved",
@@ -1878,21 +1984,35 @@
   "entryRateEquation": "1 {source} = {rate} {target}",
   "@entryRateEquation": {
     "placeholders": {
-      "source": {"type": "String"},
-      "rate": {"type": "String"},
-      "target": {"type": "String"}
+      "source": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
     }
   },
   "entryRateEditTitle": "How many {target} equal 1 {source}?",
   "@entryRateEditTitle": {
     "placeholders": {
-      "source": {"type": "String"},
-      "target": {"type": "String"}
+      "source": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
     }
   },
   "entryMissingRate": "A local rate for {currencies} is missing. Enter the actual amount or add a rate first.",
   "@entryMissingRate": {
-    "placeholders": {"currencies": {"type": "String"}}
+    "placeholders": {
+      "currencies": {
+        "type": "String"
+      }
+    }
   },
   "entryRememberRate": "Remember as rate for this date",
   "entryRememberRateHint": "Off by default. When enabled, this transaction's rate is saved to the current ledger rate table.",
@@ -1901,8 +2021,12 @@
   "entryAmountInputTitle": "Enter {label} ({currency})",
   "@entryAmountInputTitle": {
     "placeholders": {
-      "label": {"type": "String"},
-      "currency": {"type": "String"}
+      "label": {
+        "type": "String"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "refundAccountAmountLabel": "Actual account credit",
@@ -1914,34 +2038,58 @@
   "recurringMissingRate": "Rate required",
   "recurringMissingRateCount": "{count} rules are waiting for a rate before they can be posted",
   "@recurringMissingRateCount": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "recurringRetryNow": "Post due entries now",
   "recurringGeneratedCount": "Posted {count} due transactions",
   "@recurringGeneratedCount": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "recurringGenerateFailed": "Catch-up failed, please retry",
   "assetValuationMissing": "{count} accounts need an exchange rate",
   "@assetValuationMissing": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "assetValuationMissingDesc": "A rate from {currencies} to the base currency is missing, so an incomplete asset total is not shown.",
   "@assetValuationMissingDesc": {
-    "placeholders": {"currencies": {"type": "String"}}
+    "placeholders": {
+      "currencies": {
+        "type": "String"
+      }
+    }
   },
   "assetTrendMissingRate": "There is no exchange rate available for valuation yet. Set a rate for today or earlier to show the asset trend.",
   "assetTrendPartialMissing": "Some months are missing {currencies} rates ({months}); those months are not drawn. Add rates for those months or earlier to show them.",
   "@assetTrendPartialMissing": {
     "placeholders": {
-      "currencies": {"type": "String"},
-      "months": {"type": "String"}
+      "currencies": {
+        "type": "String"
+      },
+      "months": {
+        "type": "String"
+      }
     }
   },
   "exchangeRateSetAction": "Set rate",
   "baseCurrencyAmountLabel": "Base currency {currency}",
   "@baseCurrencyAmountLabel": {
-    "placeholders": {"currency": {"type": "String"}}
+    "placeholders": {
+      "currency": {
+        "type": "String"
+      }
+    }
   },
   "importSaveExchangeRates": "Save imported rates",
   "importSaveExchangeRatesHint": "Off by default. When enabled, only rates used by included transactions are saved.",

@@ -28,6 +28,7 @@ import 'pages/onboarding_page.dart';
 import 'pages/privacy_consent_gate.dart';
 import 'pages/shell.dart';
 import 'pages/widget_configuration_page.dart';
+import 'app/welcome/verifin_welcome.dart';
 
 @pragma('vm:entry-point')
 Future<void> configureMain() => runWidgetConfiguration();
@@ -275,12 +276,14 @@ class _VeriFinAppState extends State<VeriFinApp> with WidgetsBindingObserver {
                       ),
                       builder: (context, child) => Material(
                         type: MaterialType.transparency,
-                        child: PrivacyConsentGate(
-                          child: AppLockGate(
-                            child: OnboardingGate(
-                              child: VeriFeedbackHost(
-                                controller: _feedbackController,
-                                child: child ?? const SizedBox.shrink(),
+                        child: VeriFinWelcomeGate(
+                          child: PrivacyConsentGate(
+                            child: AppLockGate(
+                              child: OnboardingGate(
+                                child: VeriFeedbackHost(
+                                  controller: _feedbackController,
+                                  child: child ?? const SizedBox.shrink(),
+                                ),
                               ),
                             ),
                           ),

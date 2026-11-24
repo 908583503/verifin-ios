@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10,6 +11,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get appTitle => 'Veri Fin';
+
+  @override
+  String get welcomeSubtitle => '个人记账 · 数据都在本机';
+
+  @override
+  String get welcomeLoadingText => '正在打开账本';
 
   @override
   String get statRangeLabel => '统计区间';
