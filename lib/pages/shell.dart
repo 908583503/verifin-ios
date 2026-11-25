@@ -622,9 +622,7 @@ class _VeriFinShellState extends State<VeriFinShell> {
       // iOS 没有独立的配置 Activity：小组件深链 route=setup 时在主应用内
       // 打开配置页（Android 走 WidgetConfigurationActivity 的独立引擎入口）。
       await Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (_) => WidgetConfigurationPage(),
-        ),
+        MaterialPageRoute<void>(builder: (_) => WidgetConfigurationPage()),
       );
       return;
     }

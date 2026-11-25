@@ -23,8 +23,9 @@ int iosWidgetIdForKind(String kind) {
   final key = kind.startsWith(iosWidgetKindPrefix)
       ? kind.substring(iosWidgetKindPrefix.length)
       : kind;
-  final index = WidgetTemplate.values
-      .indexWhere((template) => template.key == key);
+  final index = WidgetTemplate.values.indexWhere(
+    (template) => template.key == key,
+  );
   return index >= 0 ? index + 1 : 0;
 }
 

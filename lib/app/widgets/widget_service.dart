@@ -65,7 +65,9 @@ Future<void> _pushWidgetProjection(
     // scheduleWidgetUpdates 在 iOS 上是显式 no-op，不产生任何调度副作用。
     final active = Platform.isIOS
         ? WidgetTemplate.values
-        : WidgetTemplate.values.where((template) => (counts[template.key] ?? 0) > 0);
+        : WidgetTemplate.values.where(
+            (template) => (counts[template.key] ?? 0) > 0,
+          );
     if (!Platform.isIOS && !force && counts.isEmpty) return;
     final payload = _encodePayload(controller);
     if (payload.fingerprint == _pushedFingerprint) {
