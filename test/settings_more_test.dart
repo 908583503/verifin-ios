@@ -30,14 +30,10 @@ void main() {
     expect(find.text('检查更新'), findsOneWidget);
     expect(find.text('GitHub 仓库'), findsOneWidget);
 
-    // 「更多」在「关于」之后；检查更新已移出关于卡片（位于「鸣谢」下方）。
+    // 「更多」在「关于」之后。
     expect(
       tester.getTopLeft(find.text('更多')).dy,
       greaterThan(tester.getTopLeft(find.text('关于')).dy),
-    );
-    expect(
-      tester.getTopLeft(find.text('检查更新')).dy,
-      greaterThan(tester.getTopLeft(find.text('鸣谢')).dy),
     );
   });
 

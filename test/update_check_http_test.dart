@@ -33,7 +33,7 @@ void main() {
     );
     expect(result, isA<UpdateAvailable>());
     expect((result as UpdateAvailable).release.tag, 'v1.21.0');
-    expect(received.value(HttpHeaders.userAgentHeader), 'VeriFin/1.20.15');
+    expect(received.value(HttpHeaders.userAgentHeader), 'XYTally/1.20.15');
     expect(
       received.value(HttpHeaders.acceptHeader),
       'application/vnd.github+json',

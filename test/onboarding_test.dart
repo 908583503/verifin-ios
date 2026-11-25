@@ -40,7 +40,7 @@ void main() {
 
     await _pumpOnboarding(tester, controller);
 
-    expect(find.text('欢迎使用 Veri Fin'), findsOneWidget);
+    expect(find.text('欢迎使用 XYTally'), findsOneWidget);
 
     // 第 1 步 → 账户步骤。
     await tester.tap(find.byKey(const Key('onboarding_next')));

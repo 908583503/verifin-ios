@@ -97,7 +97,7 @@ Future<UpdateCheckResult> _checkLatestRelease(
   try {
     final request = await client.getUrl(endpoint);
     request.headers
-      ..set(HttpHeaders.userAgentHeader, 'VeriFin/$currentVersion')
+      ..set(HttpHeaders.userAgentHeader, 'XYTally/$currentVersion')
       ..set(HttpHeaders.acceptHeader, 'application/vnd.github+json');
     final response = await request.close().timeout(_requestTimeout);
     if (response.statusCode != HttpStatus.ok) {

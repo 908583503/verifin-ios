@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10,13 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Veri Fin';
-
-  @override
-  String get welcomeSubtitle => '个人记账 · 数据都在本机';
-
-  @override
-  String get welcomeLoadingText => '正在打开账本';
+  String get appTitle => 'XYTally';
 
   @override
   String get statRangeLabel => '统计区间';
@@ -2218,7 +2211,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nextStep => '下一步';
 
   @override
-  String get onboardWelcomeTitle => '欢迎使用 Veri Fin';
+  String get onboardWelcomeTitle => '欢迎使用 XYTally';
 
   @override
   String get onboardWelcomeDesc =>
@@ -2560,23 +2553,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsSectionMore => '更多';
-
-  @override
-  String get creditsTitle => '鸣谢';
-
-  @override
-  String get creditsIntro => '感谢这些人的支持，Veri Fin 才能一直免费、干净地做下去。';
-
-  @override
-  String creditsSupporterCount(int count) {
-    return '$count 位';
-  }
-
-  @override
-  String get creditsSupportNote => '这里没有会员特权，也没有解锁内容——你支持的是这款软件本身能继续做下去。';
-
-  @override
-  String get creditsSupportAction => '在爱发电支持 Veri Fin';
 
   @override
   String get openLinkFailed => '没能打开浏览器，请稍后再试。';
@@ -3855,7 +3831,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get bioUnlockReason => '验证生物识别以解锁 Veri Fin';
+  String get bioUnlockReason => '验证生物识别以解锁 XYTally';
 
   @override
   String get verifyFailedRetry => '验证失败，请重试';
@@ -3958,14 +3934,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get widgetGalleryTitle => '桌面小组件';
 
   @override
-  String get widgetGallerySubtitle => '查看 VeriFin 提供的固定组件样式';
+  String get widgetGallerySubtitle => '查看 XYTally 提供的固定组件样式';
 
   @override
   String get widgetGalleryShort => '模板预览';
 
   @override
   String get widgetHowToAddDesc =>
-      '长按桌面空白处 → 选择「小组件」→ 找到 Veri Fin → 拖动想要的小组件到桌面。';
+      '长按桌面空白处 → 选择「小组件」→ 找到 XYTally → 拖动想要的小组件到桌面。';
 
   @override
   String get widgetConfigureHint => '添加到桌面后若显示「点击进入配置」，点一下就能选账本和外观。';
@@ -3998,7 +3974,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get widgetBookPlaceholder => '请选择账本';
 
   @override
-  String get widgetNoLedgerYet => '还没有可选的账本。请先打开一次 Veri Fin 应用创建设置，再回来配置这个小组件。';
+  String get widgetNoLedgerYet => '还没有可选的账本。请先打开一次 XYTally 应用创建设置，再回来配置这个小组件。';
 
   @override
   String get widgetOpenApp => '打开应用';

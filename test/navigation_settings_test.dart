@@ -407,8 +407,8 @@ void main() {
     expect(find.text('主题模式'), findsOneWidget);
     expect(find.text('同步方式'), findsNothing);
     expect(find.text('Android 打包'), findsNothing);
-    await tester.scrollUntilVisible(find.text('VeriFin $appVersionLabel'), 120);
-    expect(find.text('VeriFin $appVersionLabel'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('XYTally $appVersionLabel'), 120);
+    expect(find.text('XYTally $appVersionLabel'), findsOneWidget);
 
     await tester.scrollUntilVisible(find.text('主题模式'), -180);
     await tester.pumpAndSettle();

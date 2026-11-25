@@ -112,6 +112,6 @@ void main() {
     await settleTextAutoSave(tester);
 
     expect(find.text('未设置昵称'), findsNothing);
-    expect(controller.profile.nickname, 'Veri Fin');
+    expect(controller.profile.nickname, 'XYTally');
   });
 }

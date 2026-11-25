@@ -144,7 +144,7 @@ class _VeriFinBootstrapState extends State<VeriFinBootstrap> {
   String _diagnosticsText() {
     final coordinator = _coordinator;
     final buffer = StringBuffer()
-      ..writeln('Veri Fin $appVersionLabel')
+      ..writeln('XYTally $appVersionLabel')
       ..writeln('stage: ${coordinator.stage.name}')
       ..writeln('elapsed: ${coordinator.elapsed.inMilliseconds}ms')
       ..writeln('timings: ${coordinator.timingSummary}');

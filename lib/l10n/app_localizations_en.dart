@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10,13 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Veri Fin';
-
-  @override
-  String get welcomeSubtitle => 'Personal bookkeeping · data stays local';
-
-  @override
-  String get welcomeLoadingText => 'Opening your ledger';
+  String get appTitle => 'XYTally';
 
   @override
   String get statRangeLabel => 'Range';
@@ -2269,7 +2262,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextStep => 'Next';
 
   @override
-  String get onboardWelcomeTitle => 'Welcome to Veri Fin';
+  String get onboardWelcomeTitle => 'Welcome to XYTally';
 
   @override
   String get onboardWelcomeDesc =>
@@ -2615,25 +2608,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSectionMore => 'More';
 
   @override
-  String get creditsTitle => 'Credits';
-
-  @override
-  String get creditsIntro =>
-      'Veri Fin stays free and clean thanks to these people.';
-
-  @override
-  String creditsSupporterCount(int count) {
-    return '$count people';
-  }
-
-  @override
-  String get creditsSupportNote =>
-      'No memberships, no locked features — you are supporting the software itself.';
-
-  @override
-  String get creditsSupportAction => 'Support Veri Fin on Afdian';
-
-  @override
   String get openLinkFailed => 'Could not open the browser. Please try again.';
 
   @override
@@ -2852,7 +2826,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get platformCsvTemplate => 'CSV template';
 
   @override
-  String get platformCsvTemplateHint => 'Veri Fin CSV template';
+  String get platformCsvTemplateHint => 'XYTally CSV template';
 
   @override
   String get importGroupSoftware => 'Apps / payment platforms';
@@ -3962,7 +3936,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get bioUnlockReason => 'Verify biometrics to unlock Veri Fin';
+  String get bioUnlockReason => 'Verify biometrics to unlock XYTally';
 
   @override
   String get verifyFailedRetry => 'Verification failed; try again';
@@ -4068,14 +4042,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get widgetGallerySubtitle =>
-      'Preview the fixed VeriFin widget templates';
+      'Preview the fixed XYTally widget templates';
 
   @override
   String get widgetGalleryShort => 'Template preview';
 
   @override
   String get widgetHowToAddDesc =>
-      'Long-press an empty spot on your home screen → choose Widgets → find Veri Fin → drag the widget you want onto the screen.';
+      'Long-press an empty spot on your home screen → choose Widgets → find XYTally → drag the widget you want onto the screen.';
 
   @override
   String get widgetConfigureHint =>
@@ -4110,7 +4084,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get widgetNoLedgerYet =>
-      'No book is available yet. Open the Veri Fin app once to create your book, then come back to configure this widget.';
+      'No book is available yet. Open the XYTally app once to create your book, then come back to configure this widget.';
 
   @override
   String get widgetOpenApp => 'Open app';

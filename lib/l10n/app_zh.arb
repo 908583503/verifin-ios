@@ -1,8 +1,6 @@
 {
   "@@locale": "zh",
-  "appTitle": "Veri Fin",
-  "welcomeSubtitle": "个人记账 · 数据都在本机",
-  "welcomeLoadingText": "正在打开账本",
+  "appTitle": "XYTally",
   "statRangeLabel": "统计区间",
   "@appTitle": {
     "description": "应用名称"
@@ -1684,7 +1682,7 @@
   "skipLabel": "跳过",
   "startBookkeeping": "开始记账",
   "nextStep": "下一步",
-  "onboardWelcomeTitle": "欢迎使用 Veri Fin",
+  "onboardWelcomeTitle": "欢迎使用 XYTally",
   "onboardWelcomeDesc": "一款完全免费、数据自主、本地优先的记账应用。\n\n你的账目只保存在本机，不上传服务器；可随时导出 JSON 备份或加密上传到自己的 WebDAV。\n\n下面用几步帮你快速开始。",
   "onboardAccountTitle": "创建第一个账户",
   "onboardAccountDesc": "账户是记账的基础，比如「现金」「工资卡」。填写名称与当前余额即可，也可以稍后在「资产」页添加。",
@@ -1926,9 +1924,6 @@
   "settingsSectionBookkeeping": "记账",
   "settingsSectionAbout": "关于",
   "settingsSectionMore": "更多",
-  "creditsTitle": "鸣谢",
-  "creditsIntro": "感谢这些人的支持，Veri Fin 才能一直免费、干净地做下去。",
-  "creditsSupporterCount": "{count} 位",
   "@creditsSupporterCount": {
     "description": "Settings row trailing text: how many supporters the thanks list holds",
     "placeholders": {
@@ -1937,8 +1932,6 @@
       }
     }
   },
-  "creditsSupportNote": "这里没有会员特权，也没有解锁内容——你支持的是这款软件本身能继续做下去。",
-  "creditsSupportAction": "在爱发电支持 Veri Fin",
   "openLinkFailed": "没能打开浏览器，请稍后再试。",
   "themeMode": "主题模式",
   "themeColorLabel": "主题色",
@@ -2655,7 +2648,7 @@
       }
     }
   },
-  "bioUnlockReason": "验证生物识别以解锁 Veri Fin",
+  "bioUnlockReason": "验证生物识别以解锁 XYTally",
   "verifyFailedRetry": "验证失败，请重试",
   "enterPassword": "输入密码",
   "drawPatternUnlock": "请绘制图案解锁",
@@ -2689,9 +2682,9 @@
   "bioSignInTitle": "生物解锁",
   "bioHint": "验证身份",
   "widgetGalleryTitle": "桌面小组件",
-  "widgetGallerySubtitle": "查看 VeriFin 提供的固定组件样式",
+  "widgetGallerySubtitle": "查看 XYTally 提供的固定组件样式",
   "widgetGalleryShort": "模板预览",
-  "widgetHowToAddDesc": "长按桌面空白处 → 选择「小组件」→ 找到 Veri Fin → 拖动想要的小组件到桌面。",
+  "widgetHowToAddDesc": "长按桌面空白处 → 选择「小组件」→ 找到 XYTally → 拖动想要的小组件到桌面。",
   "widgetConfigureHint": "添加到桌面后若显示「点击进入配置」，点一下就能选账本和外观。",
   "widgetTemplateQuickEntry": "快速记账",
   "widgetTemplateBudget": "预算进度",
@@ -2702,7 +2695,7 @@
   "widgetBook": "账本",
   "widgetAppearance": "外观",
   "widgetBookPlaceholder": "请选择账本",
-  "widgetNoLedgerYet": "还没有可选的账本。请先打开一次 Veri Fin 应用创建设置，再回来配置这个小组件。",
+  "widgetNoLedgerYet": "还没有可选的账本。请先打开一次 XYTally 应用创建设置，再回来配置这个小组件。",
   "widgetOpenApp": "打开应用",
   "widgetPreview": "预览",
   "reminderNotifBody": "别忘了记录今天的收支～",

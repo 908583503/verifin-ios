@@ -101,20 +101,8 @@ abstract class AppLocalizations {
   /// 应用名称
   ///
   /// In zh, this message translates to:
-  /// **'Veri Fin'**
+  /// **'XYTally'**
   String get appTitle;
-
-  /// No description provided for @welcomeSubtitle.
-  ///
-  /// In zh, this message translates to:
-  /// **'个人记账 · 数据都在本机'**
-  String get welcomeSubtitle;
-
-  /// No description provided for @welcomeLoadingText.
-  ///
-  /// In zh, this message translates to:
-  /// **'正在打开账本'**
-  String get welcomeLoadingText;
 
   /// No description provided for @statRangeLabel.
   ///
@@ -4073,7 +4061,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardWelcomeTitle.
   ///
   /// In zh, this message translates to:
-  /// **'欢迎使用 Veri Fin'**
+  /// **'欢迎使用 XYTally'**
   String get onboardWelcomeTitle;
 
   /// No description provided for @onboardWelcomeDesc.
@@ -4681,36 +4669,6 @@ abstract class AppLocalizations {
   /// In zh, this message translates to:
   /// **'更多'**
   String get settingsSectionMore;
-
-  /// No description provided for @creditsTitle.
-  ///
-  /// In zh, this message translates to:
-  /// **'鸣谢'**
-  String get creditsTitle;
-
-  /// No description provided for @creditsIntro.
-  ///
-  /// In zh, this message translates to:
-  /// **'感谢这些人的支持，Veri Fin 才能一直免费、干净地做下去。'**
-  String get creditsIntro;
-
-  /// Settings row trailing text: how many supporters the thanks list holds
-  ///
-  /// In zh, this message translates to:
-  /// **'{count} 位'**
-  String creditsSupporterCount(int count);
-
-  /// No description provided for @creditsSupportNote.
-  ///
-  /// In zh, this message translates to:
-  /// **'这里没有会员特权，也没有解锁内容——你支持的是这款软件本身能继续做下去。'**
-  String get creditsSupportNote;
-
-  /// No description provided for @creditsSupportAction.
-  ///
-  /// In zh, this message translates to:
-  /// **'在爱发电支持 Veri Fin'**
-  String get creditsSupportAction;
 
   /// No description provided for @openLinkFailed.
   ///
@@ -7061,7 +7019,7 @@ abstract class AppLocalizations {
   /// No description provided for @bioUnlockReason.
   ///
   /// In zh, this message translates to:
-  /// **'验证生物识别以解锁 Veri Fin'**
+  /// **'验证生物识别以解锁 XYTally'**
   String get bioUnlockReason;
 
   /// No description provided for @verifyFailedRetry.
@@ -7265,7 +7223,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetGallerySubtitle.
   ///
   /// In zh, this message translates to:
-  /// **'查看 VeriFin 提供的固定组件样式'**
+  /// **'查看 XYTally 提供的固定组件样式'**
   String get widgetGallerySubtitle;
 
   /// No description provided for @widgetGalleryShort.
@@ -7277,7 +7235,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetHowToAddDesc.
   ///
   /// In zh, this message translates to:
-  /// **'长按桌面空白处 → 选择「小组件」→ 找到 Veri Fin → 拖动想要的小组件到桌面。'**
+  /// **'长按桌面空白处 → 选择「小组件」→ 找到 XYTally → 拖动想要的小组件到桌面。'**
   String get widgetHowToAddDesc;
 
   /// No description provided for @widgetConfigureHint.
@@ -7343,7 +7301,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetNoLedgerYet.
   ///
   /// In zh, this message translates to:
-  /// **'还没有可选的账本。请先打开一次 Veri Fin 应用创建设置，再回来配置这个小组件。'**
+  /// **'还没有可选的账本。请先打开一次 XYTally 应用创建设置，再回来配置这个小组件。'**
   String get widgetNoLedgerYet;
 
   /// No description provided for @widgetOpenApp.
